@@ -5,19 +5,28 @@
 */
 
 type AllType = {
-  name: string;
-  position: number;
-  color: string;
-  weight: number
+    name: string;
+    position: number;
+    color: string;
+    weight: number;
+};
+
+function compare<T extends AllType, U extends AllType>(
+    top: Pick<T, keyof AllType>,
+    bottom: Pick<U, keyof AllType>,
+): AllType {
+    return {
+        name: top.name,
+        color: top.color,
+        position: bottom.position,
+        weight: bottom.weight,
+    };
 }
 
-function compare (top, bottom): AllType {
-  return {
-    name: top.name,
-    color: top.color,
-    position: bottom.position,
-    weight: bottom.weight,
-  }
-}
+// const result = compare(
+//   { name: 'TopObject', position: 1, color: 'red', weight: 10 },
+//   { name: 'BottomObject', position: 2, color: 'blue', weight: 20 }
+// );
+// console.log(result);
 
 export {};
